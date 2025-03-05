@@ -7,7 +7,6 @@ const ENVIRONMENT_SCHEMA = z.object({
     DISCORD_BOT_TOKEN: z.string(),
     DISCORD_APP_ID: z.string(),
     GUILD_ID: z.string(),
-    LOG_CHANNEL_ID: z.string(),
     GOOGLE_APPLICATION_CREDENTIALS_JSON: z.string().transform((val) => {
         try {
             return JSON.parse(val) as JWTInput;
