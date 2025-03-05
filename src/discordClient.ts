@@ -24,7 +24,7 @@ export const initialize = async () => {
 
     // Load all commands from dir/subdirs on start
     client.commands = new Collection();
-    const foldersPath = path.join(path.resolve(), 'commands');
+    const foldersPath = './commands';
     const commandFolders = fs.readdirSync(foldersPath);
 
     for (const folder of commandFolders) {
@@ -51,7 +51,7 @@ export const initialize = async () => {
     }
 
     // Load all event handlers from dir on start
-    const eventsPath = path.join(path.resolve(), 'events');
+    const eventsPath = './events';
     const eventFiles = fs
         .readdirSync(eventsPath)
         .filter((file) => file.endsWith('.ts') && !file.endsWith('.test.ts'));
