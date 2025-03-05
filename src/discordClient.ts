@@ -83,17 +83,6 @@ export const initialize = async () => {
             } application (/) commands.`
         );
 
-        // TODO: Remove this deletion once the code has run in prod at least once
-        // Delete all existing global commands
-        await rest
-            .put(Routes.applicationCommands(Environment.DISCORD_APP_ID), {
-                body: [],
-            })
-            .then(() =>
-                console.log('Successfully deleted all global commands.')
-            )
-            .catch(console.error);
-
         // Fully redeploy all commands at the guild level
         const data = await rest.put(
             Routes.applicationGuildCommands(
