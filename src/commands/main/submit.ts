@@ -138,7 +138,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
                     },
                     {
                         // Set approved to false
-                        range: `Bingo Drops!G${tileSheetCol}`,
+                        range: `Drop List!G${tileSheetCol}`,
                         values: [['No']],
                     },
                 ],
