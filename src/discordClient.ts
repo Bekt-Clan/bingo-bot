@@ -1,5 +1,6 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import { fileURLToPath } from 'url';
+import * as fs from 'fs';
+import * as path from 'path';
 import {
     Client,
     Collection,
@@ -17,6 +18,9 @@ import type {
 
 import { Environment } from './services/environment.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 let client: ModifiedDiscordClient;
 
 export const initialize = async () => {
@@ -24,7 +28,7 @@ export const initialize = async () => {
 
     // Load all commands from dir/subdirs on start
     client.commands = new Collection();
-    const foldersPath = './commands';
+    const foldersPath = path.join(__dirname, 'commands');
     const commandFolders = fs.readdirSync(foldersPath);
 
     for (const folder of commandFolders) {
@@ -51,7 +55,7 @@ export const initialize = async () => {
     }
 
     // Load all event handlers from dir on start
-    const eventsPath = './events';
+    const eventsPath = path.join(__dirname, 'events');
     const eventFiles = fs
         .readdirSync(eventsPath)
         .filter((file) => file.endsWith('.ts') && !file.endsWith('.test.ts'));
