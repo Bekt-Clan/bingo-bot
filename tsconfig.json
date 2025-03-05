@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+
+        "strict": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+
+        "outDir": "./build",
+        "rootDir": "./src",
+
+        "typeRoots": [
+            "node_modules/@types",
+            "./node_modules/@discordjs/typings",
+            "src/types"
+        ],
+    },
+    "include": ["src"]
+}
