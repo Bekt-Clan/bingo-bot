@@ -105,6 +105,43 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
     }
 
     // Event specific checks/gates
+    if (
+        tileName in
+        [
+            'Varlamore Only',
+            'Varlamore Achievement Diary',
+            'Bronzeman Mode',
+            'Doom Unique',
+            'Blessed Spirit Shield',
+        ]
+    ) {
+        try {
+            // get values
+            //check if all are yes
+            // fail on a no
+            const res = await sheets.spreadsheets.values.get({
+                spreadsheetId: teamSheetID,
+                range: `Drop List!D${tileSheetCol - 5}:D${tileSheetCol - 1}`,
+            });
+
+            const rows = res.data.values || [];
+            const allYes =
+                rows.length === 5 && rows.every((row) => row[0] === 'Yes');
+
+            if (!allYes) {
+                await interaction.editReply(
+                    `You haven't unlocked the ${tileName} Final Challenge yet! Finish all the other tiles in the column to unlock this one!`
+                );
+                return;
+            }
+        } catch (err) {
+            console.error(`Error checking final challenge eligibility: ${err}`);
+            await interaction.editReply(
+                'An error occurred. Please contact staff.'
+            );
+            throw err;
+        }
+    }
 
     /*
     TODO: This can be improved! We should set it up so that
