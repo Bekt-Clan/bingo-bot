@@ -104,6 +104,8 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
         return;
     }
 
+    // Event specific checks/gates
+
     /*
     TODO: This can be improved! We should set it up so that
     we have a dir of modules that abstract this and then we can
@@ -119,17 +121,17 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
                 data: [
                     {
                         // Mark tile submitted
-                        range: `Drop List!C${tileSheetCol}`,
+                        range: `Drop List!D${tileSheetCol}`,
                         values: [['Yes']],
                     },
                     {
                         // Record timestamp
-                        range: `Drop List!E${tileSheetCol}`,
+                        range: `Drop List!F${tileSheetCol}`,
                         values: [[new Date().toUTCString()]],
                     },
                     {
                         // Record msg link
-                        range: `Drop List!F${tileSheetCol}`,
+                        range: `Drop List!G${tileSheetCol}`,
                         values: [
                             [
                                 `https://discord.com/channels/${interaction.guild.id}/${interaction.channelId}/${interaction.id}`,
@@ -138,7 +140,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
                     },
                     {
                         // Set approved to false
-                        range: `Drop List!G${tileSheetCol}`,
+                        range: `Drop List!H${tileSheetCol}`,
                         values: [['No']],
                     },
                 ],
