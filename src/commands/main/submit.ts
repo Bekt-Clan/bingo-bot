@@ -106,14 +106,13 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
     // Event specific checks/gates
     if (
-        tileName in
         [
             'Varlamore Only',
             'Varlamore Achievement Diary',
             'Bronzeman Mode',
             'Doom Unique',
             'Blessed Spirit Shield',
-        ]
+        ].includes(tileName)
     ) {
         try {
             // get values
